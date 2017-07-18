@@ -1,5 +1,6 @@
 //Game state is like a scene: Title, game over, menu, etc...
 var demo = {}, centerX = 1500 / 2, centerY = 1000 / 2, smile, forest, speed = 8;
+var cursors;
 
 demo.state1 = function () {};
 demo.state1.prototype = {
@@ -30,32 +31,32 @@ demo.state1.prototype = {
         game.physics.enable(smile);
         smile.body.collideWorldBounds = true;
         
-        smile.animations.add('walk', 0, 1, 2, 3)
+        smile.animations.add('walk', 0, 1, 2, 3);
         
         game.camera.follow(smile);
                                             //origin X, origin Y, width, height
-        game.camera.deadzone = new Phaser.Rectangle(centerX - 300, centerY - 0, 600, 1000);
+        game.camera.deadzone = new Phaser.Rectangle(centerX - 300, centerY, 600, 1000);
         changeStateHandler();
         
     },
     
     update: function () {
-        if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+        if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
             smile.scale.setTo(-0.75, 0.75);
             smile.x += speed;
                         //Animation name, frame rate, loop
             smile.animations.play('walk', 12, true);
-        } else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+        } else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
             smile.scale.setTo(0.75, 0.75);
             smile.x -= speed;
             smile.animations.play('walk', 12, true);
-        } else if(game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+        } else if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
             smile.y -= speed;
-            if(smile.y < 340) {
+            if (smile.y < 340) {
                 smile.y = 340;
             }
             smile.animations.play('walk', 12, true);
-        } else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+        } else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
             smile.y += speed;
             smile.animations.play('walk', 12, true);
         } else {
@@ -68,7 +69,7 @@ demo.state1.prototype = {
             //Phaser passes the 1 from 'adding-function code' alongside other arguments. We log i just for giggles.
 
 function changeState(i, stateNum) {
-    console.log(i);
+    console.log("You're in state " + stateNum);
     game.state.start('state' + stateNum);
 }
 

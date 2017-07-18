@@ -7,3 +7,9 @@ To update repo:
 
 
 With git commit, -m argument adds a message.
+
+Lastly:
+
+		git push
+		Username:
+		Password:
